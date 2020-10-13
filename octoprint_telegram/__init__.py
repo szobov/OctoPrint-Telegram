@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
 from PIL import Image
@@ -14,7 +15,6 @@ from babel.dates import format_date, format_datetime, format_time
 
 bytes_reader_class = io.BytesIO
 
-
 def is_in_python_2():
 	if sys.version[0] == "2":
 		return True
@@ -23,6 +23,9 @@ def is_in_python_2():
 if is_in_python_2():
 	import StringIO
 	bytes_reader_class = StringIO.StringIO
+	reload(sys)
+	if hasattr(sys, "setdefaultencoding"):
+		sys.setdefaultencoding('UTF8')
 
 ####################################################
 #        TelegramListener Thread Class
